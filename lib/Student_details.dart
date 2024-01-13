@@ -1,8 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Stud_details extends StatefulWidget {
-  const Stud_details({super.key});
+  final String? stu_name;
+  final String? stu_image;
+  final int? stu_grid;
+  final int? stu_standard;
+
+  const Stud_details({super.key,
+    required this.stu_name,required this.stu_image,required this.stu_grid,required this.stu_standard});
 
   @override
   State<Stud_details> createState() => _Stud_detailsState();
@@ -43,7 +51,7 @@ class _Stud_detailsState extends State<Stud_details> {
                   color: Colors.transparent,
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: AssetImage('assets/images/s1.jpg'),
+                      image: FileImage(File(widget.stu_image!)),
                       fit: BoxFit.cover),
                   boxShadow: [
                     BoxShadow(blurRadius: 30.0, color: Colors.black45)
@@ -66,7 +74,7 @@ class _Stud_detailsState extends State<Stud_details> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Name',
+                        widget.stu_name!,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -81,7 +89,7 @@ class _Stud_detailsState extends State<Stud_details> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('GR - ID : ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                            Text('12345',style: TextStyle(fontSize: 20))
+                            Text(widget.stu_grid.toString(),style: TextStyle(fontSize: 20))
                           ],
                         ),
                       ),
@@ -93,7 +101,7 @@ class _Stud_detailsState extends State<Stud_details> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(' Standerd : ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                            Text('5',style: TextStyle(fontSize: 20))
+                            Text(widget.stu_standard.toString(),style: TextStyle(fontSize: 20))
                           ],
                         ),
                       ),
